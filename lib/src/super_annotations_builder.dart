@@ -8,6 +8,7 @@ import 'runner_builder.dart';
 
 class SuperAnnotationsBuilder extends Builder {
   final BuilderOptions options;
+
   SuperAnnotationsBuilder(this.options);
 
   List<String> get targetOptions {
@@ -47,7 +48,10 @@ class SuperAnnotationsBuilder extends Builder {
               buildStep, target, codeGenAnnotation, options.config)
           .run();
 
-      await buildStep.writeAsString(outputId, DartFormatter().format(output));
+      await buildStep.writeAsString(
+          outputId,
+          DartFormatter(languageVersion: DartFormatter.latestLanguageVersion)
+              .format(output));
     }
   }
 
